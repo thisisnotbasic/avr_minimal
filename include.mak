@@ -92,6 +92,7 @@ program:
 read:
 	$(FLASH) -F -V $(PROG) -p $(AVRDUDEDEV)
 doc:
+	mkdir -p doc
 	doxygen Doxyfile
 
 mem_insights:
