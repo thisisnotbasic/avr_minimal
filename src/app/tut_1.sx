@@ -1,0 +1,17 @@
+#define __SFR_OFFSET 0          // Use 0 for the I/O register offset
+#include "avr_lib_constants.h"
+#include <avr/io.h>             // Defines I/O port aliases
+  
+.global asmfunc_calledfrom_c    ; Makes asmfunc_calledfrom_c visible in other source files
+  
+.section .text                  ; Defines a code section
+  
+asmfunc_calledfrom_c:           ; Start of asmfunc_calledfrom_c subroutine
+         ldi r16, 0xFF       ; lade Arbeitsregister r16 mit der Konstanten 0xFF
+         out DDRB, r16       ; Inhalt von r16 ins IO-Register DDRB ausgeben
+
+         ldi r16, 0b11010101 ; 0b11111100 in r16 laden
+         out PORTB, r16      ; r16 ins IO-Register PORTB ausgeben
+         ret
+
+;ende:    rjmp ende           ; Sprung zur Marke "ende" -> Endlosschleife
